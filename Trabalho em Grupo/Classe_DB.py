@@ -7,12 +7,11 @@ class BlackDB:
         self.mycursor = self.conexao.cursor()
         self.user = ''
 
-    def cadas_user(self,nome, sobrenome, nome_exibicao, email, senha):
+    def cadas_user(self, nome, sobrenome, nome_exibicao, email, senha):
         comando_sql = f'insert into Usuarios (nome, sobrenome, nome_exibicao, email, senha) values ("{nome}",' \
-                       f'"{sobrenome}","{nome_exibicao}", "{email}", "{senha}")'
+                      f'"{sobrenome}","{nome_exibicao}", "{email}", "{senha}")'
         self.mycursor.execute(comando_sql)
         self.conexao.commit()
-
 
     def check_user(self, entry_email, entry_senha):
         self.mycursor.execute('select email,senha from Usuarios')
@@ -33,3 +32,12 @@ class BlackDB:
         codigo = self.mycursor.fetchall()
         self.mycursor.execute(f'delete from Usuarios where id = "{codigo[0][0]}" ')
         self.conexao.commit()
+
+    def info_user(self, email):
+        global lista
+        self.mycursor.execute(f'select nome_exibicao, nome, sobrenome, email from Usuarios where email = "{email.get()}"')
+        infos = self.mycursor.fetchall()
+        for info in infos:
+            if info[3] == email.get():
+                lista = [info[0],info[1],info[2],info[3]]
+                return lista
