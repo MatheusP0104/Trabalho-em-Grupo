@@ -1,5 +1,8 @@
+from tkinter import *
 from Classe_DB import *
-from tkinter import messagebox
+from tkinter import Button, Label, messagebox, ttk
+from urllib.request import urlretrieve
+import time
 
 
 class Back:
@@ -40,10 +43,55 @@ class Back:
         else:
             bt.place_forget()
 
-    def Lista(self,lista, entry_email):
-        lista = self.db.info_user(entry_email)
-        return lista
+    def Lista(self, entry_email, lb_exi, lb_nome, lb_email):
+        lista = self.db.info_user(entry_email.get())
+        lb_exi['text'] = f'{lista[0]}'
+        lb_nome['text'] = f'{lista[1]} {lista[2]}'
+        lb_email['text'] = f'{lista[3]}'
 
-    def perfil(self,lb,lista):
-        lb['text'] = lista
+    def add_biblioteca(self, bt, jogo, x, y):
+        if bt['fg'] == '#191919':
+            jogo.place(width=195, height=21, x=x, y=y)
+            bt['text'] = 'Remover da Biblioteca'
+            bt['fg'] = '#F01F15'
+        elif bt['fg'] == '#F01F15':
+            jogo.place_forget()
+            bt['fg'] = '#191919'
+            bt['text'] = 'Adicionar a Biblioteca'
 
+    def download(self):
+        janela2 = Toplevel()
+        janela2.geometry('350x200')
+        janela2.resizable(False,False)
+        janela2.iconbitmap('Fotos/black megb.ico')
+        janela2.title('Download')
+
+        def instalar():
+            urlretrieve("https://docs.google.com/uc?export=download&id=1EjKmIidcQNEgpX4lVJniWJYhtdyAYHSC",
+                        "JogoMario.rar")
+            for i in range(5):
+                if progress1['value'] < 100:
+                    janela2.update_idletasks()
+                    progress1['value'] += 20
+                    value_label['text'] = progress1['value'], '%'
+                    time.sleep(0.1)
+                else:
+                    messagebox.showinfo(message='Algo deu errado!, Tente novamente')
+
+            messagebox.showinfo(message='Download terminado com sucesso!')
+
+        def parar():
+            progress1.stop()
+            value_label['text'] = progress1['value'], '%'
+
+        progress1 = ttk.Progressbar(janela2, orient='horizontal', mode='determinate', length=200)
+        progress1.pack(pady=20)
+
+        value_label = Label(janela2, text='0%')
+        value_label.pack(pady=20)
+
+        bt_instalar = Button(janela2, text='Instalar', command=instalar)
+        bt_instalar.pack(pady=20)
+
+        bt_parar = Button(janela2, text='Cancelar', command=parar)
+        bt_parar.pack(pady=20)

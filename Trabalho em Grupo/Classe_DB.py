@@ -34,10 +34,12 @@ class BlackDB:
         self.conexao.commit()
 
     def info_user(self, email):
-        global lista
-        self.mycursor.execute(f'select nome_exibicao, nome, sobrenome, email from Usuarios where email = "{email.get()}"')
+        self.mycursor.execute(f'select nome_exibicao, nome, sobrenome, email from Usuarios where email = "{email}"')
         infos = self.mycursor.fetchall()
+        lista = []
         for info in infos:
-            if info[3] == email.get():
-                lista = [info[0],info[1],info[2],info[3]]
-                return lista
+            lista.append(info[0])
+            lista.append(info[1])
+            lista.append(info[2])
+            lista.append(info[3])
+        return lista
