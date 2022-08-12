@@ -88,9 +88,8 @@ en_email = Entry(frame_login, font='palatino 15 bold', bd=0, bg=dark_gray, fg=wh
 en_senha = Entry(frame_login, font='palatino 15 bold', bd=0, bg=dark_gray, fg=white)
 # Buttons
 bt_entrar = Button(frame_login, text='Entrar', font='palatino 20 bold', bg=blue, bd=0, fg=white, activebackground=blue,
-                   activeforeground=white, command=lambda: [back.logar(en_email, en_senha,
-                                                                       frame_principal, frame_login),
-                                                            back.Lista(entry_email=en_email, lb_exi=La_N_exibicao,lb_nome=La_Nome, lb_email=La_email)])
+                   activeforeground=white, command=lambda: [back.logar(en_email, La_N_exibicao, La_Nome, La_email,
+                                                                       en_senha, frame_principal, frame_login)])
 
 bt_cadas = Button(frame_login, text='Cadastrar', font='Cardo 12 underline', bg=dark_gray, fg=blue,
                   activebackground=dark_gray, activeforeground=blue, bd=0,
@@ -165,7 +164,8 @@ lb_mario.pack()
 chvalue = BooleanVar()
 check_fav_mario = Checkbutton(frame_mario, image=img_fav_off, selectimage=img_fav_on, activebackground=dark_gray,
                               selectcolor=dark_gray, indicatoron=False, bd=0, onvalue=True, offvalue=False,
-                              bg=dark_gray, variable=chvalue, command=lambda: back.mudar(chvalue, fav_mario, x=1, y=311))
+                              bg=dark_gray, variable=chvalue, command=lambda: back.mudar(chvalue, fav_mario,
+                                                                                         x=1, y=311))
 check_fav_mario.place(x=735, y=474)
 
 menu_mario = Button(frame_mario, image=img_menu_bt, bd=0, bg=dark_gray, activebackground=dark_gray,
@@ -177,8 +177,8 @@ bt_biblioteca.place(x=4, y=117)
 bt_perfil = Button(frame_mario, image=img_bt_perfil, bd=0, bg=dark_gray, activebackground=dark_gray,
                    command=lambda: [frame_perfil.pack(), frame_mario.forget()])
 bt_perfil.place(x=5, y=472)
-bt_add_bibli_mario = Button(frame_mario, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0, bg='#737373', fg=black,
-                            activebackground='#737373', activeforeground=black,
+bt_add_bibli_mario = Button(frame_mario, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0, bg='#737373',
+                            fg=black, activebackground='#737373', activeforeground=black,
                             command=lambda: back.add_biblioteca(bt_add_bibli_mario, bt_mario_bibli, x=5, y=164))
 bt_add_bibli_mario.place(width=200, height=39, x=240, y=477)
 # =======================================================================================================================
@@ -192,8 +192,9 @@ menu_sonic.place(x=12, y=76)
 ch_sonic_value = BooleanVar()
 
 check_fav_soni = Checkbutton(frame_sonic, image=img_fav_off, selectimage=img_fav_on, activebackground=dark_gray,
-                              selectcolor=dark_gray, indicatoron=False, bd=0,onvalue=True,offvalue=False,
-                              bg=dark_gray, variable=ch_sonic_value,command=lambda:back.mudar(ch_sonic_value,fav_sonic,x=1,y=336))
+                             selectcolor=dark_gray, indicatoron=False, bd=0, onvalue=True, offvalue=False,
+                             bg=dark_gray, variable=ch_sonic_value, command=lambda: back.mudar(ch_sonic_value,
+                                                                                               fav_sonic, x=1, y=336))
 check_fav_soni.place(x=735, y=474)
 
 bt_biblioteca = Button(frame_sonic, image=img_bt_biblioteca, bd=0, bg=dark_gray, activebackground=dark_gray,
@@ -202,8 +203,8 @@ bt_biblioteca.place(x=4, y=117)
 bt_perfil = Button(frame_sonic, image=img_bt_perfil, bd=0, bg=dark_gray, activebackground=dark_gray,
                    command=lambda: [frame_perfil.pack(), frame_sonic.forget()])
 bt_perfil.place(x=5, y=472)
-bt_add_bibli_sonic = Button(frame_sonic, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0, bg='#737373', fg=black,
-                            activebackground='#737373', activeforeground=black,
+bt_add_bibli_sonic = Button(frame_sonic, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0, bg='#737373',
+                            fg=black, activebackground='#737373', activeforeground=black,
                             command=lambda: back.add_biblioteca(bt_add_bibli_sonic, bt_sonic_bibli, x=5, y=192))
 bt_add_bibli_sonic.place(width=200, height=39, x=240, y=477)
 # =======================================================================================================================
@@ -220,8 +221,9 @@ bt_biblioteca.place(x=4, y=117)
 ch_donkey = BooleanVar()
 
 check_fav_donkey = Checkbutton(frame_donkeykong, image=img_fav_off, selectimage=img_fav_on, activebackground=dark_gray,
-                               selectcolor=dark_gray, indicatoron=False, bd=0,onvalue=True,offvalue=False,
-                               bg=dark_gray, variable=ch_donkey,command=lambda:back.mudar(ch_donkey,fav_donkey,x=1,y=362))
+                               selectcolor=dark_gray, indicatoron=False, bd=0, onvalue=True, offvalue=False,
+                               bg=dark_gray, variable=ch_donkey, command=lambda: back.mudar(ch_donkey, fav_donkey, x=1,
+                                                                                            y=362))
 check_fav_donkey.place(x=735, y=474)
 
 bt_perfil = Button(frame_donkeykong, image=img_bt_perfil, bd=0, bg=dark_gray, activebackground=dark_gray,
@@ -246,8 +248,8 @@ ch_mk = BooleanVar()
 
 
 check_fav_mk = Checkbutton(frame_mk, image=img_fav_off, selectimage=img_fav_on, activebackground=dark_gray,
-                           selectcolor=dark_gray, indicatoron=False, bd=0,onvalue=True,offvalue=False,
-                           bg=dark_gray, variable=ch_mk,command=lambda:back.mudar(ch_mk,fav_mk,x=1,y=385))
+                           selectcolor=dark_gray, indicatoron=False, bd=0, onvalue=True, offvalue=False,
+                           bg=dark_gray, variable=ch_mk, command=lambda: back.mudar(ch_mk, fav_mk, x=1, y=385))
 check_fav_mk.place(x=735, y=474)
 
 bt_perfil = Button(frame_mk, image=img_bt_perfil, bd=0, bg=dark_gray, activebackground=dark_gray,
@@ -272,14 +274,15 @@ ch_bomber = BooleanVar()
 
 check_fav_bomber = Checkbutton(frame_bomberman, image=img_fav_off, selectimage=img_fav_on, activebackground=dark_gray,
                                selectcolor=dark_gray, indicatoron=False, bd=0, bg=dark_gray, variable=ch_bomber,
-                               onvalue=True,offvalue=False,command=lambda:back.mudar(ch_bomber,fav_bomber,x=1,y=407))
+                               onvalue=True, offvalue=False, command=lambda: back.mudar(ch_bomber, fav_bomber, x=1,
+                                                                                        y=407))
 check_fav_bomber.place(x=735, y=474)
 
 bt_perfil = Button(frame_bomberman, image=img_bt_perfil, bd=0, bg=dark_gray, activebackground=dark_gray,
                    command=lambda: [frame_perfil.pack(), frame_bomberman.forget()])
 bt_perfil.place(x=5, y=472)
-bt_add_bibli_bomber = Button(frame_bomberman, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0, bg='#737373',
-                             fg=black, activebackground='#737373', activeforeground=black,
+bt_add_bibli_bomber = Button(frame_bomberman, text='Adicionar a Biblioteca', font='palatino 15 bold', bd=0,
+                             bg='#737373', fg=black, activebackground='#737373', activeforeground=black,
                              command=lambda: back.add_biblioteca(bt_add_bibli_bomber, bt_bomber, x=0, y=269))
 bt_add_bibli_bomber.place(width=200, height=39, x=240, y=477)
 # =======================================================================================================================
@@ -289,7 +292,7 @@ lb_biblioteca.pack()
 lb_jogar = Label(frame_biblioteca, image=img_jogar, bd=0)
 # Buttons
 bt_jogar = Button(frame_biblioteca, image=img_bt_jogar, bd=0, bg=dark_gray, activebackground=dark_gray,
-                  command=lambda:back.download())
+                  command=lambda: back.download())
 bt_remover = Button(frame_biblioteca, image=img_bt_remover, bd=0, bg=dark_gray, activebackground=dark_gray)
 
 bt_menu = Button(frame_biblioteca, image=img_menu_bt, bd=0, bg=dark_gray, activebackground=dark_gray,
